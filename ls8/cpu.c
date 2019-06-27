@@ -47,12 +47,63 @@ void cpu_run(struct cpu *cpu)
 {
   int running = 1; // True until we get a HLT instruction
 
+  unsigned int a;
+  unsigned int b;
+  unsigned char instructs;
+  
+  int v;
+  int rob;
+  int riner;
+
+  int equals = 0;
+  int less = 0;
+  int greater = 0;
+
   while (running) {
     // TODO
     // 1. Get the value of the current instruction (in address PC).
+    instructs = cpu->ram[cpu->pc];
+
+
     // 2. Figure out how many operands this next instruction requires
+    int numberof = (instructs >> 6) +1;
+    
+    
     // 3. Get the appropriate value(s) of the operands following this instruction
+    if (numberof > 1) {
+      a = cpu->ram[cpu->pc +1];
+    }
+
+    elif (numberof > 2) {
+      b = cpu->ram[cpu->pc +2];
+
+    }
+
+
+
     // 4. switch() over it to decide on a course of action.
+    swith(instructs) {
+      case JEQ:
+      if (equals) {
+        //printf("BOB \n");
+        rob = cpu->ram[cpu->pc +1];
+        cpu->pc = cpu->registers[rob];
+
+      }
+      else {
+        cpu -> pc= pc + numberof;
+      }
+
+      break;
+
+      
+    
+      
+    
+    }
+    
+
+
     // 5. Do whatever the instruction should do according to the spec.
     // 6. Move the PC to the next instruction.
   }
