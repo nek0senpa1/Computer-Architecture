@@ -83,7 +83,7 @@ void cpu_run(struct cpu *cpu)
 
     // 4. switch() over it to decide on a course of action.
     swith(instructs) {
-      case JEQ:
+      case JEP:
       if (equals) {
         //printf("BOB \n");
         rob = cpu->ram[cpu->pc +1];
